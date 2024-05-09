@@ -28,7 +28,7 @@ class RemoveCategoryServiceTest {
     void canDeleteCategoryWithAnyPosts() {
         // given - 상황 만들기
         Category category = createCategory(1);
-        categoryRepository.saveAndFlush(category);
+        categoryRepository.save(category);
 
         // when - 동작
         categoryRepository.delete(category);
@@ -45,7 +45,7 @@ class RemoveCategoryServiceTest {
         Category category1 = createCategory(1);
         Category category2 = createCategory(2);
         Category category3 = createCategory(3);
-        categoryRepository.saveAllAndFlush(List.of(
+        categoryRepository.saveAll(List.of(
                 category1,
                 category2,
                 category3

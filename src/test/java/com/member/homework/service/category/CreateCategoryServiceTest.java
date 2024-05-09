@@ -7,11 +7,13 @@ import com.member.homework.service.category.dto.*;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.boot.test.context.*;
+import org.springframework.transaction.annotation.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.assertj.core.api.Assertions.*;
 
 @SpringBootTest
+@Transactional
 class CreateCategoryServiceTest {
 
     @Autowired
@@ -32,7 +34,6 @@ class CreateCategoryServiceTest {
 
         // when - 동작
         createCategoryService.createCategory(createCategoryServiceRequest);
-        categoryRepository.flush();
         Category createdCategory = categoryRepository.findByName("name");
 
         // then - 검증

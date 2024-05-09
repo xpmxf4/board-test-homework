@@ -30,7 +30,7 @@ class ModifyCategoryServiceTest {
         // given - 상황 만들기
         Category modifyingChild = createCategory(1);
         Category parent = createCategory(2);
-        categoryRepository.saveAllAndFlush(
+        categoryRepository.saveAll(
                 List.of(
                         modifyingChild,
                         parent
@@ -61,7 +61,7 @@ class ModifyCategoryServiceTest {
     @DisplayName("존재하지 않는 카테고리를 수정하는 경우, 수정이 불가하다.")
     void cantModifyUnexistingCategory() {
         // given - 상황 만들기
-        categoryRepository.saveAllAndFlush(List.of(
+        categoryRepository.saveAll(List.of(
                 createCategory(1),
                 createCategory(2),
                 createCategory(3)
@@ -88,7 +88,7 @@ class ModifyCategoryServiceTest {
         Category category1 = createCategory(1);
         Category category2 = createCategory(2);
         Category category3 = createCategory(3);
-        categoryRepository.saveAllAndFlush(List.of(
+        categoryRepository.saveAll(List.of(
                 category1,
                 category2,
                 category3
