@@ -16,7 +16,6 @@ public class LoadCategoryService {
     private final CategoryRepository categoryRepository;
 
     public List<Category> loadAllCategories() {
-        // 관리자 권한 체크 필요
         return categoryRepository.findAll();
     }
 }

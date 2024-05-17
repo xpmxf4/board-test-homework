@@ -17,7 +17,6 @@ import java.util.*;
 import static org.mockito.BDDMockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @Import(SecurityConfig.class)
 @WebMvcTest(CategoryController.class)
@@ -36,28 +35,28 @@ class CategoryControllerReadTest {
     @Test
     void 관리자는_모든_카테고리를_조회할_수_있다() throws Exception {
         // given - 상황 만들기
-        Category c1 = createCategory(1);
-        Category c2 = createCategory(2);
+        Category category1 = createCategory(1);
+        Category category2 = createCategory(2);
+        List<Category> categories = List.of(category1, category2);
         given(loadCategoryService.loadAllCategories())
-                .willReturn(List.of(
-                        c1, c2
-                ));
+                .willReturn(categories);
 
         // when - 동작
-        ResultActions actions = mockMvc.perform(get("/api/category")
+        ResultActions getResult = mockMvc.perform(get("/api/category")
                 .contentType(MediaType.APPLICATION_JSON)
                 .header("Authentication" , "ADMIN")
         );
 
-
         // then - 검증
-        actions.andExpect(jsonPath("$.code").value(HttpStatus.OK.value()))
-                .andExpect(jsonPath("$.status").value(HttpStatus.OK))
-                .andExpect(jsonPath("$.data[0]")
-                        .value(objectMapper.writeValueAsString(c1)))
-                .andExpect(jsonPath("$.data[1]")
-                        .value(objectMapper.writeValueAsString(c2)))
-                .andExpect(jsonPath("$.message").value(HttpStatus.OK));
+        getResult
+                .andExpect(jsonPath("$.code").value(HttpStatus.OK.value()))
+                .andExpect(jsonPath("$.status").value(HttpStatus.OK.name()))
+                .andExpect(jsonPath("$.data[0].name").value(category1.getName()))
+                .andExpect(jsonPath("$.data[0].description").value(category1.getDescription()))
+                .andExpect(jsonPath("$.data[1].name").value(category2.getName()))
+                .andExpect(jsonPath("$.data[1].description").value(category2.getDescription()))
+                .andExpect(jsonPath("$.message").value(HttpStatus.OK.getReasonPhrase()));
+
     }
 
     @Test
@@ -67,18 +66,17 @@ class CategoryControllerReadTest {
                 .willReturn(List.of());
 
         // when - 동작
-        ResultActions actions = mockMvc.perform(get("/api/category")
+        ResultActions getResult = mockMvc.perform(get("/api/category")
                 .contentType(MediaType.APPLICATION_JSON)
                 .header("Authentication" , "ADMIN")
         );
 
-
         // then - 검증
-        actions
+        getResult
                 .andExpect(jsonPath("$.code").value(HttpStatus.NO_CONTENT.value()))
-                .andExpect(jsonPath("$.status").value(HttpStatus.NO_CONTENT))
-                .andExpect(jsonPath("$.data").value(objectMapper.writeValueAsString(List.of())))
-                .andExpect(jsonPath("$.message").value(HttpStatus.NO_CONTENT));
+                .andExpect(jsonPath("$.status").value(HttpStatus.NO_CONTENT.name()))
+                .andExpect(jsonPath("$.data").isEmpty())
+                .andExpect(jsonPath("$.message").value(HttpStatus.NO_CONTENT.getReasonPhrase()));
     }
 
     private static Category createCategory(int num) {
