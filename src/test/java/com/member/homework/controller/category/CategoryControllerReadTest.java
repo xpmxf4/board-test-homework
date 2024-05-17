@@ -44,7 +44,7 @@ class CategoryControllerReadTest {
                 ));
 
         // when - 동작
-        ResultActions actions = mockMvc.perform(get("/category")
+        ResultActions actions = mockMvc.perform(get("/api/category")
                 .contentType(MediaType.APPLICATION_JSON)
                 .header("Authentication" , "ADMIN")
         );
