@@ -3,7 +3,7 @@ package com.member.homework.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.member.homework.controller.admin.RegisterMemberController;
 import com.member.homework.dto.request.RegisterMemberCommand;
-import com.member.homework.service.RegisterMemberService;
+import com.member.homework.service.member.*;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;

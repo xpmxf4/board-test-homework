@@ -21,10 +21,12 @@ public class ApiResponse<T> {
     }
 
 
+    // error
     public static <T> ApiResponse<T> of(HttpStatus httpStatus, String message, T data) {
         return new ApiResponse<>(httpStatus, message, data);
     }
 
+    // error
     public static <T> ApiResponse<T> of(HttpStatus httpStatus, T data) {
         return of(httpStatus, httpStatus.name(), data);
     }
