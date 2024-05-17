@@ -16,6 +16,7 @@ import static org.hamcrest.Matchers.is;
 
 
 @WebMvcTest(CategoryController.class)
+@DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class CreateCategoryControllerTest {
 
     @Autowired
