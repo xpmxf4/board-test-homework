@@ -36,4 +36,12 @@ public class ApiControllerAdvice {
         return ResponseEntity.badRequest()
                 .body(ApiResponse.of(BAD_REQUEST, ErrorCode.PARAMETER_INVALID.getDetail(), e.getMessage()));
     }
+
+    @ExceptionHandler(CustomException.class)
+    public ResponseEntity<String> handleCustomException(CustomException e) { // 임시로 string만 받아서 처리
+        log.error(e.getMessage());
+
+        return ResponseEntity.status(e.getHttpStatus())
+                .body(e.getMessage());
+    }
 }

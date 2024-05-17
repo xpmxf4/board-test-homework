@@ -11,8 +11,7 @@ import java.util.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/category")
-public class CategoryController {
+public class GetCategoryController {
 
     private final LoadCategoryService loadCategoryService;
 

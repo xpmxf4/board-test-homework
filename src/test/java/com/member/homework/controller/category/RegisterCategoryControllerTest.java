@@ -1,10 +1,14 @@
 package com.member.homework.controller.category;
 
 import com.fasterxml.jackson.databind.*;
+import com.member.homework.config.*;
 import com.member.homework.controller.category.dto.*;
+import com.member.homework.service.category.*;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.boot.test.autoconfigure.web.servlet.*;
+import org.springframework.boot.test.mock.mockito.*;
+import org.springframework.context.annotation.*;
 import org.springframework.http.*;
 import org.springframework.test.web.servlet.*;
 
@@ -13,15 +17,19 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.hamcrest.Matchers.is;
 
 
-@WebMvcTest(CategoryController.class)
+@Import(SecurityConfig.class)
+@WebMvcTest(RegisterCategoryController.class)
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
-class CategoryControllerCreateTest {
+class RegisterCategoryControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
 
     @Autowired
     private ObjectMapper objectMapper;
+
+    @MockBean
+    private CreateCategoryService createCategoryService;
 
     @Test
     void 관리자가_새로운_카테고리를_생성할_수_있다() throws Exception {

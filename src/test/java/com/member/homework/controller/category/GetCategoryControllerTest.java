@@ -1,6 +1,5 @@
 package com.member.homework.controller.category;
 
-import com.fasterxml.jackson.databind.*;
 import com.member.homework.config.*;
 import com.member.homework.domain.*;
 import com.member.homework.service.category.*;
@@ -19,15 +18,12 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
 @Import(SecurityConfig.class)
-@WebMvcTest(CategoryController.class)
+@WebMvcTest(GetCategoryController.class)
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
-class CategoryControllerReadTest {
+class GetCategoryControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
-
-    @Autowired
-    private ObjectMapper objectMapper;
 
     @MockBean
     private LoadCategoryService loadCategoryService;
