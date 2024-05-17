@@ -2,14 +2,12 @@ package com.member.homework.controller.category;
 
 import com.fasterxml.jackson.databind.*;
 import com.member.homework.controller.category.dto.*;
-import com.member.homework.exception.*;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.boot.test.autoconfigure.web.servlet.*;
 import org.springframework.http.*;
 import org.springframework.test.web.servlet.*;
 
-import static com.member.homework.exception.ErrorCode.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.hamcrest.Matchers.is;
@@ -17,26 +15,13 @@ import static org.hamcrest.Matchers.is;
 
 @WebMvcTest(CategoryController.class)
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
-class CreateCategoryControllerTest {
+class CategoryControllerCreateTest {
 
     @Autowired
     private MockMvc mockMvc;
 
     @Autowired
     private ObjectMapper objectMapper;
-
-
-    private CreateCategoryControllerRequest req;
-
-    @BeforeEach
-    void setup() {
-        req = new CreateCategoryControllerRequest(
-                "test name",
-                "test desc",
-                1L
-        );
-    }
-
 
     @Test
     void 관리자가_새로운_카테고리를_생성할_수_있다() throws Exception {

@@ -31,9 +31,9 @@ public class ApiControllerAdvice {
     }
 
     @ExceptionHandler(HandlerMethodValidationException.class)
-    public ResponseEntity<ApiResponse<String>> handlerMethodValidationException() {
+    public ResponseEntity<ApiResponse<String>> handlerMethodValidationException(HandlerMethodValidationException e) {
 
         return ResponseEntity.badRequest()
-                .body(ApiResponse.of(BAD_REQUEST, ErrorCode.PARAMETER_INVALID.getDetail()));
+                .body(ApiResponse.of(BAD_REQUEST, ErrorCode.PARAMETER_INVALID.getDetail(), e.getMessage()));
     }
 }

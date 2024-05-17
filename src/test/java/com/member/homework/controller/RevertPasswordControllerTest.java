@@ -1,7 +1,7 @@
 package com.member.homework.controller;
 
 import com.member.homework.controller.admin.RevertPasswordController;
-import com.member.homework.service.RevertPasswordService;
+import com.member.homework.service.admin.*;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
